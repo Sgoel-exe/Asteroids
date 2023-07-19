@@ -18,7 +18,9 @@ public class PlayerMoment : MonoBehaviour
     [Header("PlayerMoment")]
     //Movement related stuff;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float rotationSpeed = 45f;
+    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float maxVelocity = 35f;
+    [SerializeField] private float maxAngularVelocity = 50f;
 
     //Screen Wrap Stuff
     [Header("Screen Wrap")]
@@ -48,6 +50,14 @@ public class PlayerMoment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rb.velocity.magnitude >= maxVelocity)
+        {
+           rb.velocity = rb.velocity.normalized * maxVelocity;
+        }
+        if(Mathf.Abs(rb.angularVelocity) >= maxAngularVelocity)
+        {
+            rb.angularVelocity = Mathf.Sign(rb.angularVelocity)*maxAngularVelocity;
+        }
     }
 
     private void FixedUpdate()
@@ -64,7 +74,7 @@ public class PlayerMoment : MonoBehaviour
 
     void Rotating()
     {
-        rb.angularVelocity = (Rotation.ReadValue<float>() * rotationSpeed);
+        rb.AddTorque(Rotation.ReadValue<float>() * rotationSpeed * Time.deltaTime);
     }
 
     private void ScreenWrap()
