@@ -9,7 +9,9 @@ public class LargeAsteroids : abstractAsteroid
     public float speed = 10f;
     private Vector2 dir;
 
-    public float deathTime = 10f;
+    public GameObject asteroidDestroy;
+
+    public float deathTime = 30f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,21 +28,33 @@ public class LargeAsteroids : abstractAsteroid
         for (float i = 0f; i < spawn; i++)
         {
             int temp = Random.Range(0f, 1f) < 0.6f ? 0 : 1;
-            abstractAsteroid asteroid = Instantiate(asteroids[temp], transform.position, transform.rotation);
-            asteroid.setTrajectory(dir);
-        }
+            
+            Vector3 spawnDirection = Random.insideUnitCircle.normalized * 0.5f;
+            Vector3 spawnPosition = transform.position + spawnDirection;
+            spawnPosition.z = 0f;
 
+            abstractAsteroid asteroid = Instantiate(asteroids[temp], spawnPosition, this.transform.rotation);
+            asteroid.setTrajectory(Random.insideUnitCircle.normalized, true);
+        }
+        Vector3 particlePosition = transform.position;
+        particlePosition.z = -1f;
+        Instantiate(asteroidDestroy, particlePosition, this.transform.rotation);
         Destroy(gameObject);
     }
 
-    public override void setTrajectory(Vector2 direction)
+    public override void setTrajectory(Vector2 direction, bool moreSpeed = false)
     {
+        float spe = 1f;
         dir = direction;
         if (rb == null)
         {
             rb = GetComponent<Rigidbody2D>();
         }
-        rb.AddForce(direction * speed, ForceMode2D.Force);
+        if (moreSpeed)
+        {
+            spe = 10f;
+        }
+        rb.AddForce(direction * speed * spe, ForceMode2D.Force);
         Destroy(gameObject, deathTime);
     }
 }

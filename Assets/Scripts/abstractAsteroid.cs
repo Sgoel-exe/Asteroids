@@ -10,7 +10,7 @@ abstract public class abstractAsteroid : MonoBehaviour
     public float maxVelocity = 30f;
     public float AngularVelocity = 10f;
     public abstract void die();
-    public abstract void setTrajectory(Vector2 direction);
+    public abstract void setTrajectory(Vector2 direction, bool moreSpeed = false);
     public float calculateVelocity()
     {
         return Random.Range(minVelocity, maxVelocity);

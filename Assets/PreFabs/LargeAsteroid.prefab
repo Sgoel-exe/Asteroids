@@ -158,4 +158,5 @@ MonoBehaviour:
   - {fileID: 2540565218263493098, guid: a0591596cb06a0e4ea0b029f7c77106d, type: 3}
   - {fileID: 4669518417542951355, guid: bdc258dc9df1d944582d6fc4fedb19db, type: 3}
   speed: 90
-  deathTime: 3
+  asteroidDestroy: {fileID: 7364755576681717104, guid: 35447f0ceddb6cf4f992b88d5834b1e0, type: 3}
+  deathTime: 30

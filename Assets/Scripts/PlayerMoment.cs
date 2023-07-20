@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class PlayerMoment : MonoBehaviour
 
     public InputAction Movement;
     public InputAction Rotation;
+    public InputAction Flip;
 
     private Renderer[] renderers;
 
@@ -27,17 +29,29 @@ public class PlayerMoment : MonoBehaviour
     public float screenHeight;
     public float screenWidth;
 
+    //Particle Things
+    public ParticleSystem propulsion;
+    public float whenBackingRotation = 68f;
+    public float whenForwardRotation = 248f;
+
+    //Flip things
+    private bool isForward = true;
+
 
     private void OnEnable()
     {
         Movement.Enable();
         Rotation.Enable();
+
+        Flip.Enable();
+        Flip.performed += flip;
     }
 
     private void OnDisable()
     {
         Movement.Disable();
         Rotation.Disable();
+        Flip.Disable();
     }
 
     // Start is called before the first frame update
@@ -58,6 +72,16 @@ public class PlayerMoment : MonoBehaviour
         {
             rb.angularVelocity = Mathf.Sign(rb.angularVelocity)*maxAngularVelocity;
         }
+
+        if(Movement.IsInProgress())
+        {
+            propulsion.Play();
+        }
+        else
+        {
+            propulsion.Pause();
+            propulsion.Clear();
+        }
     }
 
     private void FixedUpdate()
@@ -69,12 +93,32 @@ public class PlayerMoment : MonoBehaviour
 
     void Move()
     {
-        rb.AddRelativeForce(new Vector2(0, Movement.ReadValue<float>() * moveSpeed), ForceMode2D.Force);
+        if (Movement.IsInProgress())
+        {
+            rb.AddRelativeForce(new Vector2(0, moveSpeed), ForceMode2D.Force);
+        }
+        
     }
 
     void Rotating()
     {
-        rb.AddTorque(Rotation.ReadValue<float>() * rotationSpeed * Time.deltaTime);
+        //rb.AddTorque(Rotation.ReadValue<float>() * rotationSpeed * Time.deltaTime);
+        rb.angularVelocity = Rotation.ReadValue<float>() * maxAngularVelocity;
+    }
+
+    private void flip(InputAction.CallbackContext context)
+    {
+        if (isForward)
+        {
+            transform.Rotate(0f, 0f, transform.rotation.z + 180f);
+            isForward = false;
+        }
+        else
+        {
+            transform.Rotate(0f, 0f, transform.rotation.z - 180f);
+            isForward = true;
+        }
+        
     }
 
     private void ScreenWrap()

@@ -7,8 +7,9 @@ public class SmallAsteroid : abstractAsteroid
     private Rigidbody2D rb;
     public float speed = 15f;
 
-    public float deathTime = 10f;
+    public float deathTime = 30f;
 
+    public GameObject asteroidDestroy;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,16 +22,24 @@ public class SmallAsteroid : abstractAsteroid
 
     public override void die()
     {
+        Vector3 particlePosition = transform.position;
+        particlePosition.z = -1f;
+        Instantiate(asteroidDestroy, particlePosition, this.transform.rotation);
         Destroy(gameObject);
     }
 
-    public override void setTrajectory(Vector2 direction)
+    public override void setTrajectory(Vector2 direction, bool moreSpeed = false)
     {
+        float spe = 1f;
         if (rb == null)
         {
             rb = GetComponent<Rigidbody2D>();
         }
-        rb.AddForce(direction * speed, ForceMode2D.Force);
+        if (moreSpeed)
+        {
+            spe = 10f;
+        }
+        rb.AddForce(direction * speed * spe, ForceMode2D.Force);
         Destroy(gameObject, deathTime);
     }
 }

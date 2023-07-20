@@ -6,7 +6,7 @@ public class AsteroidSpawner : MonoBehaviour
 {
     [Header("Spawn Related Stuff")]
     public float spawnrate = 1f;
-    public int spawnAmout = 1;
+    public int spawnAmout = 2;
     public float spawnDistance = 25f;
     public float spawnVariance = 15f;
 
@@ -30,7 +30,7 @@ public class AsteroidSpawner : MonoBehaviour
 
         for(int i  = 0; i < spawnAmout; i++)
         {
-            Vector3 spawnDirection = Random.insideUnitSphere.normalized * spawnDistance;
+            Vector3 spawnDirection = Random.insideUnitCircle.normalized * spawnDistance;
             Vector3 spawnPosition = transform.position + spawnDirection;
 
             float Variance = Random.Range(-spawnVariance, spawnVariance);

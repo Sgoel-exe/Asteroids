@@ -154,3 +154,6 @@ MonoBehaviour:
   minVelocity: 10
   maxVelocity: 30
   AngularVelocity: 10
+  speed: 90
+  deathTime: 30
+  asteroidDestroy: {fileID: 7364755576681717104, guid: 35447f0ceddb6cf4f992b88d5834b1e0, type: 3}
