@@ -5,11 +5,12 @@ using UnityEngine;
 public class Buller : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public float bulletForce = 60f;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddRelativeForce(new Vector2(0, 60f), ForceMode2D.Impulse);
+        rb.AddRelativeForce(new Vector2(0, bulletForce), ForceMode2D.Impulse);
 
         Destroy(gameObject, 2f);
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5505016350878816320}
   - component: {fileID: 5505016350878816321}
   - component: {fileID: 5505016350878816322}
+  - component: {fileID: 7802577757796517233}
   m_Layer: 0
   m_Name: LargeAsteroid
   m_TagString: Asteroid
@@ -138,3 +139,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7802577757796517233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505016350878816323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5a704952e09164491d97fcca92e2bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minVelocity: 10
+  maxVelocity: 30
+  AngularVelocity: 10
+  asteroids:
+  - {fileID: 2540565218263493098, guid: a0591596cb06a0e4ea0b029f7c77106d, type: 3}
+  - {fileID: 4669518417542951355, guid: bdc258dc9df1d944582d6fc4fedb19db, type: 3}
+  speed: 90
+  deathTime: 3

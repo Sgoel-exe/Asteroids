@@ -16,7 +16,7 @@ public class PlayerShoot : MonoBehaviour
 
     //Shoot Mechanic related stuff
     [Header("Shoot mechanics")]
-    [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float fireRate = 0.25f;
     private bool canShoot = true;
     private float timer;
 

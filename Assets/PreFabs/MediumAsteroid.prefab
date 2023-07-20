@@ -154,4 +154,6 @@ MonoBehaviour:
   minVelocity: 10
   maxVelocity: 30
   AngularVelocity: 10
-  asteroid: {fileID: 3999923236654037383, guid: bdc258dc9df1d944582d6fc4fedb19db, type: 3}
+  asteroid: {fileID: 4669518417542951355, guid: bdc258dc9df1d944582d6fc4fedb19db, type: 3}
+  speed: 90
+  deathTime: 3
