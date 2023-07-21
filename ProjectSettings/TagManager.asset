@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Asteroid
-  - Bullet
+  - UIController
+  - GameScorel
+  - destroyer
   layers:
   - Default
   - TransparentFX

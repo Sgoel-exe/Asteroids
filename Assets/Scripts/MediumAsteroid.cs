@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MediumAsteroid : abstractAsteroid
 {
@@ -13,6 +14,7 @@ public class MediumAsteroid : abstractAsteroid
 
     public GameObject asteroidDestroy;
 
+    public UnityEvent asteroidDie;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,9 @@ public class MediumAsteroid : abstractAsteroid
         float scaleX = Random.Range(-0.25f, 0.75f);
         float scaleY = Random.Range(-0.25f, 0.75f);
         transform.localScale = new Vector2(transform.localScale.x + scaleX, transform.localScale.y + scaleY);
+
+        asteroidDie.AddListener(GameObject.FindGameObjectWithTag("GameScorel").GetComponent<Scoreing>().AddScore);
+        asteroidDie.AddListener(GameObject.FindGameObjectWithTag("UIController").GetComponent<UIcontoller>().UpdateScore);
     }
 
     public override void die()
@@ -38,6 +43,7 @@ public class MediumAsteroid : abstractAsteroid
         Vector3 particlePosition = transform.position;
         particlePosition.z = -1f;
         Instantiate(asteroidDestroy, particlePosition, this.transform.rotation);
+        asteroidDie.Invoke();
         Destroy(gameObject);
     }
 
