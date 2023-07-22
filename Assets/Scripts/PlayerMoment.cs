@@ -121,6 +121,15 @@ public class PlayerMoment : MonoBehaviour
         
     }
 
+    public void DisableControls()
+    {
+        rb.velocity = new Vector2(0f, 0f);
+        rb.angularVelocity = 0f;
+        Movement.Disable();
+        Rotation.Disable();
+        Flip.Disable();
+    }
+
     private void ScreenWrap()
     {
         Vector3 pos = transform.position;

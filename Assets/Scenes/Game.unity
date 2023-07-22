@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 455943219}
   m_Layer: 0
   m_Name: AsteroidSpawner
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5675,6 +5675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caeb2977c1bf1e489ebedae42720b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticles: {fileID: 4000747865682150242, guid: 6e68d192b28419b479f19cf7316f34a9, type: 3}
 --- !u!1 &1469677238
 GameObject:
   m_ObjectHideFlags: 0

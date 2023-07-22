@@ -8,6 +8,8 @@ TagManager:
   - UIController
   - GameScorel
   - destroyer
+  - Bullet
+  - Spawner
   layers:
   - Default
   - TransparentFX

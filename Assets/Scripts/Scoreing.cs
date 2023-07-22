@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Scoreing : MonoBehaviour
@@ -16,6 +17,21 @@ public class Scoreing : MonoBehaviour
     public void AddScore()
     {
         score++;
+    }
+    
+    public void LoadHighScore()
+    {
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            if(PlayerPrefs.GetInt("HighScore") < this.score)
+            {
+                PlayerPrefs.SetInt("HighScore", this.score);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("HighScore", this.score);
+        }
     }
 
 }

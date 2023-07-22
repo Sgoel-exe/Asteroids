@@ -60,4 +60,9 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
+    public void DisableControls()
+    {
+        Shoot.Disable();
+    }
+
 }
