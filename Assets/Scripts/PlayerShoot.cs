@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,8 @@ public class PlayerShoot : MonoBehaviour
     private bool canShoot = true;
     private float timer;
 
+    //Audio related things
+    public AudioSource shootSound;
     private void OnEnable()
     {
         Shoot.Enable();
@@ -55,6 +58,7 @@ public class PlayerShoot : MonoBehaviour
         if(canShoot)
         {
             Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+            shootSound.Play();
             canShoot = false;
             timer = 0f;
         }

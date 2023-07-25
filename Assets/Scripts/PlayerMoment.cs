@@ -20,7 +20,7 @@ public class PlayerMoment : MonoBehaviour
     [Header("PlayerMoment")]
     //Movement related stuff;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float rotationSpeed = 10f;
+    //[SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float maxVelocity = 35f;
     [SerializeField] private float maxAngularVelocity = 50f;
 
@@ -37,6 +37,8 @@ public class PlayerMoment : MonoBehaviour
     //Flip things
     private bool isForward = true;
 
+    //audio stuff
+    public AudioSource moveSound;
 
     private void OnEnable()
     {
@@ -76,11 +78,13 @@ public class PlayerMoment : MonoBehaviour
         if(Movement.IsInProgress())
         {
             propulsion.Play();
+            moveSound.volume = 0.3f;
         }
         else
         {
             propulsion.Pause();
             propulsion.Clear();
+            moveSound.volume = 0.1f;
         }
     }
 

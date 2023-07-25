@@ -10,6 +10,8 @@ public class PlayerDeath : MonoBehaviour
     private PlayerShoot playerShoot;
     private AsteroidSpawner spawner;
 
+    public AudioSource deathSound;
+
     private void Start()
     {
         spawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<AsteroidSpawner>();
@@ -36,6 +38,7 @@ public class PlayerDeath : MonoBehaviour
         playerMoment.SendMessage("DisableControls");
         playerShoot.SendMessage("DisableControls");
         GetComponent<SpriteRenderer>().enabled = false;
+        deathSound.Play();
         Destroy(spawner.gameObject);
         Instantiate(deathParticles, transform.position, transform.rotation);
         yield return new WaitForSeconds(2f);

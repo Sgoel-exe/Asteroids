@@ -8,4 +8,14 @@ public class StartButton : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }
+
+    public void Credits()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Credits");
+    }
+
+    public void Menu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
+    }
 }
